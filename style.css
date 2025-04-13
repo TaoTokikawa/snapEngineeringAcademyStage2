@@ -22,7 +22,7 @@ body {
   padding-bottom: 10px;
 }
 
-/*.title {
+.title {
   text-align: center;
   margin: 0;
   font-size: 8em;
@@ -46,61 +46,6 @@ body {
 
   animation: rainbowGlow 8s ease infinite;
 }
-  */
-
-  .title-wrapper {
-    position: relative;
-    display: inline-block;
-    font-size: 8em;
-    font-family: 'Audiowide', sans-serif;
-    font-weight: normal;
-    text-align: center;
-    margin: 0 auto;
-  }
-  
-  .title-wrapper .glow,
-  .title-wrapper .gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    pointer-events: none;
-  }
-  
-  .title-wrapper .glow {
-    color: #fff;
-    text-shadow:
-      0 0 7px #fff,
-      0 0 10px #fff,
-      0 0 21px #fff,
-      0 0 42px #0fa,
-      0 0 82px #0fa,
-      0 0 92px #0fa,
-      0 0 102px #0fa,
-      0 0 151px #0fa;
-    z-index: 1;
-  }
-  
-  .title-wrapper .gradient {
-    background: linear-gradient(
-      270deg,
-      #ff0000,
-      #ff9900,
-      #ffff00,
-      #33ff00,
-      #00ffff,
-      #3300ff,
-      #cc00ff,
-      #ff0000
-    );
-    background-size: 1500% 1500%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: rainbowGlow 8s ease infinite;
-    z-index: 2;
-  }
-  
 
 #card-container {
   display: flex;
