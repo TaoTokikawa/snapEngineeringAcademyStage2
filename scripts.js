@@ -23,19 +23,21 @@
  *
  */
 
-const FRESH_PRINCE_URL =
-  "https://upload.wikimedia.org/wikipedia/commons/6/68/Daft_Punk_in_2013_2-_centered.jpg";
-const CURB_POSTER_URL =
-  "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
-const EAST_LOS_HIGH_POSTER_URL =
-  "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
+const HOMEWORK_URL =
+  "https://upload.wikimedia.org/wikipedia/en/9/9c/Daftpunk-homework.jpg";
+const DISCOVERY_URL =
+  "https://upload.wikimedia.org/wikipedia/en/2/27/Daft_Punk_-_Discovery.png";
+const HAA_URL =
+  "https://upload.wikimedia.org/wikipedia/en/0/0d/Humanafterall.jpg";
+const RAM_URL = 
+  "https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png"
 
 // This is an array of strings (TV show titles)
 let titles = [
   "Homework",
-  "Fresh Prince of Bel Air",
-  "Curb Your Enthusiasm",
-  "East Los High",
+  "Discovery",
+  "Human After All",
+  "Random Access Memories",
 ];
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
@@ -53,11 +55,16 @@ function showCards() {
     // own data, you'll need to do something totally different here.
     let imageURL = "";
     if (i == 0) {
-      imageURL = FRESH_PRINCE_URL;
-    } else if (i == 1) {
-      imageURL = CURB_POSTER_URL;
-    } else if (i == 2) {
-      imageURL = EAST_LOS_HIGH_POSTER_URL;
+      imageURL = HOMEWORK_URL;
+    } 
+    else if (i == 1) {
+      imageURL = DISCOVERY_URL;
+    } 
+    else if (i == 2) {
+      imageURL = HAA_URL;
+    }
+    else if (i == 3){
+      imageURL = RAM_URL;
     }
 
     const nextCard = templateCard.cloneNode(true); // Copy the template card
