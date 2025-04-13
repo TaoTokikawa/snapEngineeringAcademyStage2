@@ -32,6 +32,7 @@ const EAST_LOS_HIGH_POSTER_URL =
 
 // This is an array of strings (TV show titles)
 let titles = [
+  "Homework",
   "Fresh Prince of Bel Air",
   "Curb Your Enthusiasm",
   "East Los High",
