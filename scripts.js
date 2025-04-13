@@ -32,13 +32,52 @@ const HAA_URL =
 const RAM_URL = 
   "https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png"
 
+const HOMEWORK_AUDIO_URL =
+  "https://www.youtube.com/playlist?list=PLSdoVPM5Wnne3Q2AxosemsThywhraJ0su";
+const DISCOVERY_AUDIO_URL =
+  "https://www.youtube.com/playlist?list=PLSdoVPM5WnndSQEXRz704yQkKwx76GvPV";
+const HAA_AUDIO_URL = 
+  "https://www.youtube.com/playlist?list=PLSdoVPM5Wnne47ib65gVG206M7qp43us-";
+const RAM_AUDIO_URL = 
+  "https://www.youtube.com/playlist?list=PLSbDLF8wQ3oKcstd9ybCSv2lNm_8NTYkI";
+
 // This is an array of strings (TV show titles)
-let titles = [
+
+/*let titles = [
   "Homework",
   "Discovery",
   "Human After All",
   "Random Access Memories",
 ];
+*/
+
+let albums = [
+  {
+    title: "Homework",
+    imageURL: HOMEWORK_URL,
+    youtubeLink: HOMEWORK_AUDIO_URL,
+    songs: ["Da Funk", "Around the World", "Alive"]
+  },
+  {
+    title: "Discovery",
+    imageURL: DISCOVERY_URL,
+    youtubeLink: DISCOVERY_AUDIO_URL,
+    songs: ["One More Time", "Digital Love", "Harder, Better, Faster, Stronger"]
+  },
+  {
+    title: "Human After All",
+    imageURL: HAA_URL,
+    youtubeLink: HAA_AUDIO_URL,
+    songs: ["Robot Rock", "Technologic", "Television Rules the Nation"]
+  },
+  {
+    title: "Random Access Memories",
+    imageURL: RAM_URL,
+    youtubeLink: RAM_AUDIO_URL,
+    songs: ["Get Lucky", "Lose Yourself to Dance", "Instant Crush"]
+  }
+]
+
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
@@ -48,8 +87,8 @@ function showCards() {
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < titles.length; i++) {
-    let title = titles[i];
+  for (let i = 0; i < albums.title.length; i++) {
+    let title = albums.title[i];
 
     // This part of the code doesn't scale very well! After you add your
     // own data, you'll need to do something totally different here.
@@ -77,11 +116,20 @@ function editCardContent(card, newTitle, newImageURL) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
-  cardHeader.textContent = newTitle;
+  //cardHeader.textContent = newTitle;
+  cardHeader.innerHTML = '<a href="${albums[i].youtubeLink}" target="_blank">${albums[i].title}</a>';
 
   const cardImage = card.querySelector("img");
-  cardImage.src = newImageURL;
-  cardImage.alt = newTitle + " Poster";
+  cardImage.src = albums[i].imageURL;
+  cardImage.alt = albums[i].title + " Poster";
+
+  const list = card.querySelector("ul");
+  list.innerHTML = "";
+  for(let song of albums.songs){
+    const li = document.createElement("li");
+    li.textContent = song;
+    list.appendChild(li);
+  }
 
   // You can use console.log to help you debug!
   // View the output by right clicking on your website,
