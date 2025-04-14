@@ -118,6 +118,8 @@ function editCardContent(card, album) {
     const button = document.createElement("button");
     button.textContent = song;
     button.classList.add("button");
+    li.appendChild(button);
+    list.appendChild(li);
   }
 
   const cardImage = card.querySelector("img");
