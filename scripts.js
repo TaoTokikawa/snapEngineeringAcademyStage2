@@ -88,33 +88,30 @@ function showCards() {
   const templateCard = document.querySelector(".card");
 
   for (let i = 0; i < albums.length; i++) {
-    let title = albums[i];
+    const album = albums[i];
 
-    // This part of the code doesn't scale very well! After you add your
-    // own data, you'll need to do something totally different here.
-    let imageURL = albums[i].imageURL;
-
+    
     const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, title, imageURL); // Edit title and image
+    editCardContent(nextCard, album); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
 
-function editCardContent(card, newTitle, newImageURL) {
+function editCardContent(card, album) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
   //cardHeader.textContent = newTitle;
-  cardHeader.innerHTML = `<a href="${albums.youtubeLink}" target="_blank">${albums.title}</a>`;
+  cardHeader.innerHTML = `<a href="${album.youtubeLink}" target="_blank">${album.title}</a>`;
 
 
   const cardImage = card.querySelector("img");
-  cardImage.src = albums.imageURL;
-  cardImage.alt = albums.title + " Poster";
+  cardImage.src = album.imageURL;
+  cardImage.alt = album.title + " Poster";
 
   const list = card.querySelector("ul");
   list.innerHTML = "";
-  for(let song of albums.songs){
+  for(let song of album.songs){
     const li = document.createElement("li");
     li.textContent = song;
     list.appendChild(li);
