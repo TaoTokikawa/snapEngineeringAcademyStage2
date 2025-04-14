@@ -89,8 +89,6 @@ function showCards() {
 
   for (let i = 0; i < albums.length; i++) {
     const album = albums[i];
-
-    
     const nextCard = templateCard.cloneNode(true); // Copy the template card
     editCardContent(nextCard, album); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
@@ -116,7 +114,7 @@ function editCardContent(card, album) {
   const cardImage = card.querySelector("img");
   cardImage.src = album.imageURL;
   cardImage.alt = album.title + " Poster";
-  card.insertBefore(cardImage, card.querySelector(".card-content"));
+  //card.insertBefore(cardImage, card.querySelector(".card-content"));
 
 
   // You can use console.log to help you debug!
