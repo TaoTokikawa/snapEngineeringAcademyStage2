@@ -106,11 +106,20 @@ function editCardContent(card, album) {
   
   const list = card.querySelector("ul");
   list.innerHTML = "";
-  for(let song of album.songs){
+  /*for(let song of album.songs){
     const li = document.createElement("li");
     li.textContent = song;
     list.appendChild(li);
   }
+    */
+  
+  for(let song of album.songs){
+    const li = document.createElement("li");
+    const button = document.createElement("button");
+    button.textContent = song;
+    button.classList.add("button");
+  }
+
   const cardImage = card.querySelector("img");
   cardImage.src = album.imageURL;
   cardImage.alt = album.title + " Poster";
