@@ -114,15 +114,15 @@ function editCardContent(card, album) {
     */
   
   for(let song of album.songs){
-    const li = document.createElement("li");
+    //const li = document.createElement("li");
     const button = document.createElement("button");
     button.textContent = song;
     button.classList.add("song-button");
     button.onclick = function(){
       alert('clicked');
     };
-    li.appendChild(button);
-    list.appendChild(li);
+    //li.appendChild(button);
+    list.appendChild(button);
   }
 
   const cardImage = card.querySelector("img");
