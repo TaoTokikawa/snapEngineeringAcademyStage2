@@ -88,23 +88,11 @@ function showCards() {
   const templateCard = document.querySelector(".card");
 
   for (let i = 0; i < albums.length; i++) {
-    let title = albums.title[i];
+    let title = albums[i];
 
     // This part of the code doesn't scale very well! After you add your
     // own data, you'll need to do something totally different here.
-    let imageURL = "";
-    if (i == 0) {
-      imageURL = HOMEWORK_URL;
-    } 
-    else if (i == 1) {
-      imageURL = DISCOVERY_URL;
-    } 
-    else if (i == 2) {
-      imageURL = HAA_URL;
-    }
-    else if (i == 3){
-      imageURL = RAM_URL;
-    }
+    let imageURL = albums[i].imageURL;
 
     const nextCard = templateCard.cloneNode(true); // Copy the template card
     editCardContent(nextCard, title, imageURL); // Edit title and image
@@ -117,11 +105,12 @@ function editCardContent(card, newTitle, newImageURL) {
 
   const cardHeader = card.querySelector("h2");
   //cardHeader.textContent = newTitle;
-  cardHeader.innerHTML = '<a href="${albums[i].youtubeLink}" target="_blank">${albums[i].title}</a>';
+  cardHeader.innerHTML = `<a href="${albums.youtubeLink}" target="_blank">${albums.title}</a>`;
+
 
   const cardImage = card.querySelector("img");
-  cardImage.src = albums[i].imageURL;
-  cardImage.alt = albums[i].title + " Poster";
+  cardImage.src = albums.imageURL;
+  cardImage.alt = albums.title + " Poster";
 
   const list = card.querySelector("ul");
   list.innerHTML = "";
@@ -148,6 +137,7 @@ function quoteAlert() {
 }
 
 function removeLastCard() {
-  titles.pop(); // Remove last item in titles array
+  albums.pop();
+  //titles.pop(); // Remove last item in titles array
   showCards(); // Call showCards again to refresh
 }
