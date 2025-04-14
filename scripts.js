@@ -117,7 +117,10 @@ function editCardContent(card, album) {
     const li = document.createElement("li");
     const button = document.createElement("button");
     button.textContent = song;
-    button.classList.add("button");
+    button.classList.add("song-button");
+    button.onclick = function(){
+      alert('clicked');
+    };
     li.appendChild(button);
     list.appendChild(li);
   }
