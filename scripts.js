@@ -105,10 +105,7 @@ function editCardContent(card, album) {
   cardHeader.innerHTML = `<a href="${album.youtubeLink}" target="_blank">${album.title}</a>`;
 
 
-  const cardImage = card.querySelector("img");
-  cardImage.src = album.imageURL;
-  cardImage.alt = album.title + " Poster";
-
+  
   const list = card.querySelector("ul");
   list.innerHTML = "";
   for(let song of album.songs){
@@ -116,11 +113,16 @@ function editCardContent(card, album) {
     li.textContent = song;
     list.appendChild(li);
   }
+  const cardImage = card.querySelector("img");
+  cardImage.src = album.imageURL;
+  cardImage.alt = album.title + " Poster";
+  card.insertBefore(cardImage, card.querySelector(".card-content"));
+
 
   // You can use console.log to help you debug!
   // View the output by right clicking on your website,
   // select "Inspect", then click on the "Console" tab
-  console.log("new card:", newTitle, "- html: ", card);
+  console.log("new card:", album.title, "- html: ", card);
 }
 
 // This calls the addCards() function when the page is first loaded
