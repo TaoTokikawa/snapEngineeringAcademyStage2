@@ -51,8 +51,35 @@ const RAM_AUDIO_URL =
 ];
 */
 
-//let playlist = new LinkedList();
-//let playlistEdit = new LinkedList();
+class Stack{
+  constructor(){
+    this.items = [];
+  }
+
+  push(songName){
+    this.items.push(songName);
+  }
+
+  pop(){
+    if(this.items.length == 0){
+      return;
+    }
+    return this.items.pop();
+  }
+
+  peek(){
+    this.items[this.items.length - 1];
+  }
+
+  size(){
+    return this.items.length;
+  }
+
+}
+
+let playlist = new Stack();
+let playlistEdit = new Stack();
+
 
 let albums = [
   {
@@ -123,8 +150,9 @@ function editCardContent(card, album) {
     button.textContent = song;
     button.classList.add("song-button");
     button.onclick = function(){
-      alert('Clicked ' + song);
-      
+      alert('Added ' + song + ' to playlist.');
+      playlist.push(song);
+      updatePlaylist();
     };
     //li.appendChild(button);
     list.appendChild(button);
@@ -142,6 +170,21 @@ function editCardContent(card, album) {
   console.log("new card:", album.title, "- html: ", card);
 }
 
+function updatePlaylist() {
+  const playlistSongs = document.getElementById(".playlist-box");
+  playlistBox.innerHTML = "<h2 style='text-align:center;color:black;'>Playlist<h/2>";
+  for (let i = 0; i < playlist.size(); i++) {
+    const song = playlist.items[i];
+    const songDiv = document.createElement("div");
+    songDiv.textContent = song;
+    songDiv.style.padding = "8px";
+    songDiv.style.fontSize = "20px";
+    songDiv.style.color = "#333";
+    songDiv.style.borderBottom = "1px solid #ccc";
+    playlistBox.appendChild(songDiv);
+  }
+}
+
 // This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCards);
 
@@ -153,7 +196,10 @@ function quoteAlert() {
 }
 
 function undo(){
-
+  if(playlist == null){
+    return;
+  }
+  playlistEdit.push(playlist.pop());
 }
 
 function redo(){
