@@ -175,7 +175,7 @@ function editCardContent(card, album) {
 
 function updatePlaylist() {
   const playlistBox = document.querySelector(".playlist-box");
-  playlistBox.innerHTML = "<h2 style='text-align:center;color:black;'>Playlist<h/2>";
+  playlistBox.innerHTML = "<h2 style='text-align:center;color:black;'>Playlist</h2>";
   for (let i = 0; i < playlist.size(); i++) {
     const song = playlist.items[i];
     const songDiv = document.createElement("div");
@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", showCards);
 
 
 function undo(){
-  if(playlist == null){
+  if(playlist.isEmpty()){
     return;
   }
   playlistEdit.push(playlist.pop());
@@ -201,7 +201,7 @@ function undo(){
 }
 
 function redo(){
-  if(playlist == null){
+  if(playlist.isEmpty()){
     return;
   }
   playlist.push(playlistEdit.pop());
@@ -210,7 +210,7 @@ function redo(){
 
 function sortAlphabetically(){
   const temp = [];
-  while(playlist.length > 0){
+  while(playlist.size() > 0){
     temp.push(playlist.pop());
   }
   temp.sort();
@@ -222,7 +222,7 @@ function sortAlphabetically(){
 
 function shuffle(){
   const temp = [];
-  while(playlist.length > 0){
+  while(playlist.size() > 0){
     temp.push(playlist.pop());
   }
   for(let i = temp.length - 1; i>0; i--){
