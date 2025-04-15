@@ -120,6 +120,7 @@ function editCardContent(card, album) {
     button.classList.add("song-button");
     button.onclick = function(){
       alert('clicked');
+
     };
     //li.appendChild(button);
     list.appendChild(button);
@@ -147,6 +148,22 @@ function quoteAlert() {
   );
 }
 
+function undo(){
+
+}
+
+function redo(){
+
+}
+
+function sortAlphabetically(){
+
+}
+
+function shuffle(){
+
+}
+  
 function removeLastCard() {
   albums.pop();
   //titles.pop(); // Remove last item in titles array
