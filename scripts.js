@@ -172,7 +172,7 @@ function editCardContent(card, album) {
 
 function updatePlaylist() {
   const playlistBox = document.querySelector(".playlist-box");
-  playlistBox.innerHTML = "<h2 style='text-align:center;color:black;'>Playlist<h/2>";
+  playlistBo.innerHTML = "<h2 style='text-align:center;color:black;'>Playlist<h/2>";
   for (let i = 0; i < playlist.size(); i++) {
     const song = playlist.items[i];
     const songDiv = document.createElement("div");
