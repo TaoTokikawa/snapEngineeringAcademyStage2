@@ -205,29 +205,29 @@ function redo(){
   updatePlaylist();
 }
 
-function sortAlphabetically(playlistStack){
+function sortAlphabetically(){
   const temp = [];
-  while(playlistStack.length > 0){
-    temp.push(playlistStack.pop());
+  while(playlist.length > 0){
+    temp.push(playlist.pop());
   }
   temp.sort();
   while(temp.length>0){
-    playlistStack.push(temp.pop());
+    playlist.push(temp.pop());
   }
   updatePlaylist();
 }
 
-function shuffle(playlistStack){
+function shuffle(){
   const temp = [];
-  while(playlistStack.length > 0){
-    temp.push(playlistStack.pop());
+  while(playlist.length > 0){
+    temp.push(playlist.pop());
   }
   for(let i = temp.length - 1; i>0; i--){
     const x = Math.floor(Math.random() * (i+1));
     [temp[i], temp[x]] = [temp[x], temp[i]];
   }
   while(temp.length > 0){
-    playlistStack.push(temp.pop());
+    playlist.push(temp.pop());
   }
   updatePlaylist();
 }
