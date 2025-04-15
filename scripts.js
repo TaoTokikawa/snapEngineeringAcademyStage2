@@ -214,8 +214,8 @@ function sortAlphabetically(){
     temp.push(playlist.pop());
   }
   temp.sort();
-  while(temp.length>0){
-    playlist.push(temp.pop());
+  for (let i = 0; i < temp.length; i++) {
+    playlist.push(temp[i]);
   }
   updatePlaylist();
 }
