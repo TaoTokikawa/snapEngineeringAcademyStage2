@@ -124,6 +124,7 @@ function editCardContent(card, album) {
     button.classList.add("song-button");
     button.onclick = function(){
       alert('Clicked ' + song);
+      
     };
     //li.appendChild(button);
     list.appendChild(button);

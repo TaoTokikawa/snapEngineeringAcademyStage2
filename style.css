@@ -129,3 +129,9 @@ body {
   animation: rainbowGlow 8s ease infinite;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+.playlist-box {
+  width: 800px;
+  height: 600px;
+  background-color: white;
+}
