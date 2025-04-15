@@ -126,8 +126,6 @@ body {
     #ff0000
   );
   background-size: 1500% 1500%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
   animation: rainbowGlow 8s ease infinite;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
