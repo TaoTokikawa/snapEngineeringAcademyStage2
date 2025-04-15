@@ -175,7 +175,7 @@ function editCardContent(card, album) {
 
 function updatePlaylist() {
   const playlistBox = document.querySelector(".playlist-box");
-  playlistBox.innerHTML = "<h2 style='text-align:center;color:black;'>Playlist</h2>";
+  playlistBox.innerHTML = "";
   for (let i = 0; i < playlist.size(); i++) {
     const song = playlist.items[i];
     const songDiv = document.createElement("div");
@@ -184,6 +184,7 @@ function updatePlaylist() {
     songDiv.style.fontSize = "20px";
     songDiv.style.color = "#333";
     songDiv.style.borderBottom = "1px solid #ccc";
+    songDiv.style.fontFamily = "Verdana";
     playlistBox.appendChild(songDiv);
   }
 }
