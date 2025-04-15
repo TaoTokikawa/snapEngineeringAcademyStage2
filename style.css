@@ -131,7 +131,8 @@ body {
 }
 
 .playlist-box {
-  width: 800px;
+  display: flex;
+  width: 95%;
   height: 600px;
   background-color: white;
   border: 1px solid #ccc;
