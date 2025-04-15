@@ -188,12 +188,6 @@ function updatePlaylist() {
 // This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCards);
 
-function quoteAlert() {
-  console.log("Button Clicked!");
-  alert(
-    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
-  );
-}
 
 function undo(){
   if(playlist == null){
@@ -211,16 +205,29 @@ function redo(){
   updatePlaylist();
 }
 
-function sortAlphabetically(){
-
+function sortAlphabetically(playlistStack){
+  const temp = [];
+  while(playlistStack.length > 0){
+    temp.push(playlistStack.pop());
+  }
+  temp.sort();
+  while(temp.length>0){
+    playlistStack.push(temp.pop());
+  }
+  updatePlaylist();
 }
 
-function shuffle(){
-
-}
-  
-function removeLastCard() {
-  albums.pop();
-  //titles.pop(); // Remove last item in titles array
-  showCards(); // Call showCards again to refresh
+function shuffle(playlistStack){
+  const temp = [];
+  while(playlistStack.length > 0){
+    temp.push(playlistStack.pop());
+  }
+  for(let i = temp.length - 1; i>0; i--){
+    const x = Math.floor(Math.random() * (i+1));
+    [temp[i], temp[x]] = [temp[x], temp[i]];
+  }
+  while(temp.length > 0){
+    playlistStack.push(temp.pop());
+  }
+  updatePlaylist();
 }
