@@ -116,13 +116,13 @@ function editCardContent(card, album) {
   }
     */
   
-  for(let song of album.songs){
+  for(let song of albums){
     //const li = document.createElement("li");
     const button = document.createElement("button");
-    button.textContent = song;
+    button.textContent = song.title;
     button.classList.add("song-button");
     button.onclick = function(){
-      alert('Clicked' + song.title);
+      alert('Clicked ' + song.title);
     };
     //li.appendChild(button);
     list.appendChild(button);
