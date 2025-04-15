@@ -28,7 +28,7 @@ body {
   font-family: "Audiowide", sans-serif;
   font-weight: normal;
 
-  background: linear-gradient(
+  background-color: linear-gradient(
     270deg,
     #ff0000,
     #ff9900,
