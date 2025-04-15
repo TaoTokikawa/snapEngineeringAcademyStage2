@@ -201,7 +201,7 @@ function undo(){
 }
 
 function redo(){
-  if(playlist.isEmpty()){
+  if(playlistEdit.isEmpty()){
     return;
   }
   playlist.push(playlistEdit.pop());
