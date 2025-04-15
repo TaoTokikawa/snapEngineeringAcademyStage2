@@ -104,7 +104,6 @@ body {
 }
 
 .song-button {
-  background-color: #ffff00;
   text-align: center;
   border: none;
   padding-left: 10px;
@@ -115,4 +114,20 @@ body {
   font-size: 22px;
   cursor: pointer;
   margin: 5px;
+  background: linear-gradient(
+    270deg,
+    #ff0000,
+    #ff9900,
+    #ffff00,
+    #33ff00,
+    #00ffff,
+    #3300ff,
+    #cc00ff,
+    #ff0000
+  );
+  background-size: 1500% 1500%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: rainbowGlow 8s ease infinite;
 }
