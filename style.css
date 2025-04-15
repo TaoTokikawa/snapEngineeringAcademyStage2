@@ -28,7 +28,7 @@ body {
   font-family: "Audiowide", sans-serif;
   font-weight: normal;
 
-  background-color: linear-gradient(
+  background: linear-gradient(
     270deg,
     #ff0000,
     #ff9900,
@@ -127,7 +127,7 @@ body {
   );
   background-size: 1500% 1500%;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: black;
+  -webkit-text-fill-color: transparent;
 
   animation: rainbowGlow 8s ease infinite;
 }
