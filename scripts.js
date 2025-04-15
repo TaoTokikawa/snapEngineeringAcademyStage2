@@ -200,10 +200,15 @@ function undo(){
     return;
   }
   playlistEdit.push(playlist.pop());
+  updatePlaylist();
 }
 
 function redo(){
-
+  if(playlist == null){
+    return;
+  }
+  playlist.push(playlistEdit.pop());
+  updatePlaylist();
 }
 
 function sortAlphabetically(){
