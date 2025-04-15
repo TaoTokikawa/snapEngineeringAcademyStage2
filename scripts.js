@@ -51,6 +51,9 @@ const RAM_AUDIO_URL =
 ];
 */
 
+//let playlist = new LinkedList();
+//let playlistEdit = new LinkedList();
+
 let albums = [
   {
     title: "Homework",
@@ -119,8 +122,7 @@ function editCardContent(card, album) {
     button.textContent = song;
     button.classList.add("song-button");
     button.onclick = function(){
-      alert('clicked');
-
+      alert('Clicked' + song.title);
     };
     //li.appendChild(button);
     list.appendChild(button);
