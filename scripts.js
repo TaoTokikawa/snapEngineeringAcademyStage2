@@ -116,16 +116,22 @@ function editCardContent(card, album) {
   }
     */
   
+  let i = 0;
+
   for(let song of albums){
     //const li = document.createElement("li");
     const button = document.createElement("button");
-    button.textContent = song.title;
+    button.textContent = song.songs[i];
     button.classList.add("song-button");
     button.onclick = function(){
-      alert('Clicked ' + song.title);
+      alert('Clicked ' + song.songs[i]);
     };
     //li.appendChild(button);
     list.appendChild(button);
+    i++;
+    if(i > 3){
+      i = 0;
+    }
   }
 
   const cardImage = card.querySelector("img");
