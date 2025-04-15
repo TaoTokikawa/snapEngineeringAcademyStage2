@@ -129,7 +129,7 @@ function editCardContent(card, album) {
     //li.appendChild(button);
     list.appendChild(button);
     i++;
-    if(i > 3){
+    if(i > 2){
       i = 0;
     }
   }
