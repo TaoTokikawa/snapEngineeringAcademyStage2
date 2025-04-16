@@ -73,8 +73,8 @@ class Stack{
   }
 }
 
-//main playlist stack and a stack of the undos and redos
-let playlist = [];
+//main playlist array and a stack of the undos and redos
+let playlist = new Stack();
 let playlistEdit = new Stack();
 
 //daft punk albums
@@ -157,7 +157,7 @@ function editCardContent(card, album) {
 function updatePlaylist() {
   const playlistBox = document.querySelector(".playlist-box");
   playlistBox.innerHTML = "<h3 class='playlist-title'>Playlist</h3>";
-  for (let i = 0; i < playlist.length; i++) {
+  for (let i = 0; i < playlist.size(); i++) {
     const song = playlist.items[i];
     const songDiv = document.createElement("div");
     songDiv.textContent = song;
@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", showCards);
 
 //undos both element addition and shuffle/sort
 function undo(){
-  if(playlist.length == 0){
+  if(playlist.isEmpty()){
     return;
   }
   playlistEdit.push(playlist.pop());
@@ -193,17 +193,28 @@ function redo(){
 
 //sort the playlist alphabetically
 function sortAlphabetically(){
-
-  playlist.sort();
+  const temp = [];
+  while(playlist.size() > 0){
+    temp.push(playlist.pop());
+  }
+  temp.sort();
+  for (let i = 0; i < temp.length; i++) {
+    playlist.push(temp[i]);
+  }
   updatePlaylist();
 }
 
 function shuffle(){
-
-
-  for(let i = playlist.length - 1; i>0; i--){
+  const temp = [];
+  while(playlist.size() > 0){
+    temp.push(playlist.pop());
+  }
+  for(let i = temp.length - 1; i>0; i--){
     const x = Math.floor(Math.random() * (i+1));
-    [playlist[i], playlist[x]] = [playlist[x], playlist[i]];
+    [temp[i], temp[x]] = [temp[x], temp[i]];
+  }
+  while(temp.length > 0){
+    playlist.push(temp.pop());
   }
   updatePlaylist();
 }
