@@ -72,7 +72,6 @@ class Stack{
 }
 
 //main playlist stack and a stack of the undos and redos
-
 let playlist = new Stack();
 let undoStack = new Stack();
 let redoStack = new Stack();
@@ -179,6 +178,7 @@ function undo(){
     return;
   }
   redoStack.push(clonePlaylist(playlist));
+  undoStack.push(playlist);
   let before = undoStack.pop();
   playlist.items = [...before];
   updatePlaylist();
@@ -189,6 +189,7 @@ function redo(){
     return;
   }
   undoStack.push(clonePlaylist(playlist));
+  redoStack.push(undoStack);
   let after = redoStack.pop();
   playlist.items = [...after];
   updatePlaylist();
