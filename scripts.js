@@ -23,6 +23,8 @@
  *
  */
 
+
+//image and youtube album urls
 const HOMEWORK_URL =
   "https://upload.wikimedia.org/wikipedia/en/9/9c/Daftpunk-homework.jpg";
 const DISCOVERY_URL =
@@ -41,7 +43,7 @@ const HAA_AUDIO_URL =
 const RAM_AUDIO_URL = 
   "https://www.youtube.com/playlist?list=PLSbDLF8wQ3oKcstd9ybCSv2lNm_8NTYkI";
 
-
+//stack implementation
 class Stack{
   constructor(){
     this.items = [];
@@ -72,7 +74,7 @@ class Stack{
 }
 
 //main playlist stack and a stack of the undos and redos
-let playlist = new Stack();
+let playlist = [];
 let undoStack = new Stack();
 let redoStack = new Stack();
 
@@ -152,7 +154,7 @@ function editCardContent(card, album) {
   console.log("new card:", album.title, "- html: ", card);
 }
 
-//update the playlist with every element inside the playlist 
+//update the playlist with every element inside the playlist, called after every change to the playlist
 function updatePlaylist() {
   const playlistBox = document.querySelector(".playlist-box");
   playlistBox.innerHTML = "<h3 class='playlist-title'>Playlist</h3>";
@@ -172,31 +174,41 @@ function updatePlaylist() {
 // This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCards);
 
-
+//undos both element addition and shuffle/sort
 function undo(){
-  if(playlist.isEmpty()){
+  if(playlist.length == 0){
     return;
   }
-  redoStack.push(clonePlaylist(playlist));
-  undoStack.push(playlist);
-  let before = undoStack.pop();
-  playlist.items = [...before];
+  if(undoStack == a){
+    redoStack.push(clonePlaylist(playlist));
+    const before = undoStack.pop();
+    playlist.items = [...before];
+  }
+  else{
+   redoStack.push(playlist.pop());
+  }  
   updatePlaylist();
 }
 
+//redos element undos and shuffle/sorts
 function redo(){
   if(undoStack.isEmpty()){
     return;
   }
+
+  if(redoStack.isEmpty())
   undoStack.push(clonePlaylist(playlist));
-  redoStack.push(undoStack);
   let after = redoStack.pop();
   playlist.items = [...after];
   updatePlaylist();
 }
 
+//sort the playlist alphabetically
 function sortAlphabetically(){
-  undoStack.push(clonePlaylist(playlist));
+
+  playlist.sort();
+  
+  /*undoStack.push(clonePlaylist(playlist));
   redoStack = [];
 
   let temp = [];
@@ -207,11 +219,20 @@ function sortAlphabetically(){
   for (let i = 0; i < temp.length; i++) {
     playlist.push(temp[i]);
   }
+  */
   updatePlaylist();
 }
 
 function shuffle(){
+  const a = clonePlaylist(playlist);
   undoStack.push(clonePlaylist(playlist));
+
+
+  for(let i = playlist.length - 1; i>0; i--){
+    const x = Math.floor(Math.random() * (i+1));
+    [playlist[i], playlist[x]] = [playlist[x], playlist[i]];
+  }
+  /*undoStack.push(clonePlaylist(playlist));
   redoStack = [];
 
   let temp = [];
@@ -225,6 +246,7 @@ function shuffle(){
   while(temp.length > 0){
     playlist.push(temp.pop());
   }
+  */
   updatePlaylist();
 }
 
