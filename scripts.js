@@ -194,6 +194,9 @@ function redo(){
 }
 
 function sortAlphabetically(){
+  undoStack.push(clonePlaylist(playlist));
+  redoStack = [];
+
   const temp = [];
   while(playlist.size() > 0){
     temp.push(playlist.pop());
@@ -206,6 +209,9 @@ function sortAlphabetically(){
 }
 
 function shuffle(){
+  undoStack.push(clonePlaylist(playlist));
+  redoStack = [];
+
   const temp = [];
   while(playlist.size() > 0){
     temp.push(playlist.pop());
