@@ -41,15 +41,6 @@ const HAA_AUDIO_URL =
 const RAM_AUDIO_URL = 
   "https://www.youtube.com/playlist?list=PLSbDLF8wQ3oKcstd9ybCSv2lNm_8NTYkI";
 
-// This is an array of strings (TV show titles)
-
-/*let titles = [
-  "Homework",
-  "Discovery",
-  "Human After All",
-  "Random Access Memories",
-];
-*/
 
 class Stack{
   constructor(){
@@ -81,7 +72,8 @@ class Stack{
 }
 
 let playlist = new Stack();
-let playlistEdit = new Stack();
+let undoStack = new Stack();
+let redoStack = new Stack();
 
 
 let albums = [
@@ -132,23 +124,17 @@ function editCardContent(card, album) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
-  //cardHeader.textContent = newTitle;
+
   cardHeader.innerHTML = `<a href="${album.youtubeLink}" target="_blank">${album.title}</a>`;
 
 
   
   const list = card.querySelector("ul");
   list.innerHTML = "";
-  /*for(let song of album.songs){
-    const li = document.createElement("li");
-    li.textContent = song;
-    list.appendChild(li);
-  }
-    */
+
   
 
   for(let song of album.songs){
-    //const li = document.createElement("li");
     const button = document.createElement("button");
     button.textContent = song;
     button.classList.add("song-button");
@@ -157,19 +143,13 @@ function editCardContent(card, album) {
       playlist.push(song);
       updatePlaylist();
     };
-    //li.appendChild(button);
     list.appendChild(button);
   }
 
   const cardImage = card.querySelector("img");
   cardImage.src = album.imageURL;
   cardImage.alt = album.title + " Poster";
-  //card.insertBefore(cardImage, card.querySelector(".card-content"));
 
-
-  // You can use console.log to help you debug!
-  // View the output by right clicking on your website,
-  // select "Inspect", then click on the "Console" tab
   console.log("new card:", album.title, "- html: ", card);
 }
 
@@ -194,18 +174,22 @@ document.addEventListener("DOMContentLoaded", showCards);
 
 
 function undo(){
-  if(playlist.isEmpty()){
+  if(undoStack.isEmpty()){
     return;
   }
-  playlistEdit.push(playlist.pop());
+  redoStack.push(clonePlaylist(playlist));
+  const before = undoStack.pop();
+  playlist.items = [...before];
   updatePlaylist();
 }
 
 function redo(){
-  if(playlistEdit.isEmpty()){
+  if(redoStack.isEmpty()){
     return;
   }
-  playlist.push(playlistEdit.pop());
+  undoStack.push(clonePlaylist(playlist));
+  const after = redoStack.pop();
+  playlist.items = [...after];
   updatePlaylist();
 }
 
@@ -234,4 +218,8 @@ function shuffle(){
     playlist.push(temp.pop());
   }
   updatePlaylist();
+}
+
+function clonePlaylist(playlistTemp){
+  return [...playlistTemp.items];
 }
