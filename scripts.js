@@ -75,8 +75,7 @@ class Stack{
 
 //main playlist stack and a stack of the undos and redos
 let playlist = [];
-let undoStack = new Stack();
-let redoStack = new Stack();
+let playlistEdit = new Stack();
 
 //daft punk albums
 //albums contain a title, image link, youtube link, and an array of songs
@@ -179,27 +178,16 @@ function undo(){
   if(playlist.length == 0){
     return;
   }
-  if(undoStack == a){
-    redoStack.push(clonePlaylist(playlist));
-    const before = undoStack.pop();
-    playlist.items = [...before];
-  }
-  else{
-   redoStack.push(playlist.pop());
-  }  
+  playlistEdit.push(playlist.pop());
   updatePlaylist();
 }
 
 //redos element undos and shuffle/sorts
 function redo(){
-  if(undoStack.isEmpty()){
+  if(playlistEdit.isEmpty()){
     return;
   }
-
-  if(redoStack.isEmpty())
-  undoStack.push(clonePlaylist(playlist));
-  let after = redoStack.pop();
-  playlist.items = [...after];
+  playlist.push(playlistEdit.pop());
   updatePlaylist();
 }
 
@@ -207,48 +195,19 @@ function redo(){
 function sortAlphabetically(){
 
   playlist.sort();
-  
-  /*undoStack.push(clonePlaylist(playlist));
-  redoStack = [];
-
-  let temp = [];
-  while(playlist.size() > 0){
-    temp.push(playlist.pop());
-  }
-  temp.sort();
-  for (let i = 0; i < temp.length; i++) {
-    playlist.push(temp[i]);
-  }
-  */
   updatePlaylist();
 }
 
 function shuffle(){
-  const a = clonePlaylist(playlist);
-  undoStack.push(clonePlaylist(playlist));
 
 
   for(let i = playlist.length - 1; i>0; i--){
     const x = Math.floor(Math.random() * (i+1));
     [playlist[i], playlist[x]] = [playlist[x], playlist[i]];
   }
-  /*undoStack.push(clonePlaylist(playlist));
-  redoStack = [];
-
-  let temp = [];
-  while(playlist.size() > 0){
-    temp.push(playlist.pop());
-  }
-  for(let i = temp.length - 1; i>0; i--){
-    const x = Math.floor(Math.random() * (i+1));
-    [temp[i], temp[x]] = [temp[x], temp[i]];
-  }
-  while(temp.length > 0){
-    playlist.push(temp.pop());
-  }
-  */
   updatePlaylist();
 }
+
 
 function clonePlaylist(playlistTemp){
   return [...playlistTemp.items];
