@@ -71,11 +71,14 @@ class Stack{
   }
 }
 
+//main playlist stack and a stack of the undos and redos
+
 let playlist = new Stack();
 let undoStack = new Stack();
 let redoStack = new Stack();
 
-
+//daft punk albums
+//albums contain a title, image link, youtube link, and an array of songs
 let albums = [
   {
     title: "Homework",
@@ -103,8 +106,6 @@ let albums = [
   }
 ]
 
-// Your final submission should have much more data than this, and
-// you should use more than just an array of strings to store it all.
 
 // This function adds cards the page to display the data in the array
 function showCards() {
@@ -125,17 +126,16 @@ function editCardContent(card, album) {
 
   const cardHeader = card.querySelector("h2");
 
+  //all cards have the album linked on youtube through a hyperlink
   cardHeader.innerHTML = `<a href="${album.youtubeLink}" target="_blank">${album.title}</a>`;
 
-
-  
   const list = card.querySelector("ul");
   list.innerHTML = "";
 
-  
-
+  //every song in the album can be clicked to be added to playlist, 
+  // so a button is made for every song in an album
   for(let song of album.songs){
-    const button = document.createElement("button");
+    let button = document.createElement("button");
     button.textContent = song;
     button.classList.add("song-button");
     button.onclick = function(){
@@ -153,6 +153,7 @@ function editCardContent(card, album) {
   console.log("new card:", album.title, "- html: ", card);
 }
 
+//update the playlist with every element inside the playlist 
 function updatePlaylist() {
   const playlistBox = document.querySelector(".playlist-box");
   playlistBox.innerHTML = "<h3 class='playlist-title'>Playlist</h3>";
@@ -178,7 +179,7 @@ function undo(){
     return;
   }
   redoStack.push(clonePlaylist(playlist));
-  const before = undoStack.pop();
+  let before = undoStack.pop();
   playlist.items = [...before];
   updatePlaylist();
 }
@@ -188,7 +189,7 @@ function redo(){
     return;
   }
   undoStack.push(clonePlaylist(playlist));
-  const after = redoStack.pop();
+  let after = redoStack.pop();
   playlist.items = [...after];
   updatePlaylist();
 }
@@ -197,7 +198,7 @@ function sortAlphabetically(){
   undoStack.push(clonePlaylist(playlist));
   redoStack = [];
 
-  const temp = [];
+  let temp = [];
   while(playlist.size() > 0){
     temp.push(playlist.pop());
   }
@@ -212,7 +213,7 @@ function shuffle(){
   undoStack.push(clonePlaylist(playlist));
   redoStack = [];
 
-  const temp = [];
+  let temp = [];
   while(playlist.size() > 0){
     temp.push(playlist.pop());
   }
