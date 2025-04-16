@@ -23,6 +23,8 @@
  *
  */
 
+
+//image and youtube album urls
 const HOMEWORK_URL =
   "https://upload.wikimedia.org/wikipedia/en/9/9c/Daftpunk-homework.jpg";
 const DISCOVERY_URL =
@@ -41,16 +43,7 @@ const HAA_AUDIO_URL =
 const RAM_AUDIO_URL = 
   "https://www.youtube.com/playlist?list=PLSbDLF8wQ3oKcstd9ybCSv2lNm_8NTYkI";
 
-// This is an array of strings (TV show titles)
-
-/*let titles = [
-  "Homework",
-  "Discovery",
-  "Human After All",
-  "Random Access Memories",
-];
-*/
-
+//stack class and basic functions of stacks
 class Stack{
   constructor(){
     this.items = [];
@@ -80,10 +73,11 @@ class Stack{
   }
 }
 
+//stack which houses the entire playlist and the changes made
 let playlist = new Stack();
 let playlistEdit = new Stack();
 
-
+//all albums contain the name of the album, image/youtube url, and an array songs.
 let albums = [
   {
     title: "Homework",
@@ -111,9 +105,6 @@ let albums = [
   }
 ]
 
-// Your final submission should have much more data than this, and
-// you should use more than just an array of strings to store it all.
-
 // This function adds cards the page to display the data in the array
 function showCards() {
   const cardContainer = document.getElementById("card-container");
@@ -132,23 +123,12 @@ function editCardContent(card, album) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
-  //cardHeader.textContent = newTitle;
   cardHeader.innerHTML = `<a href="${album.youtubeLink}" target="_blank">${album.title}</a>`;
 
-
-  
   const list = card.querySelector("ul");
   list.innerHTML = "";
-  /*for(let song of album.songs){
-    const li = document.createElement("li");
-    li.textContent = song;
-    list.appendChild(li);
-  }
-    */
-  
 
   for(let song of album.songs){
-    //const li = document.createElement("li");
     const button = document.createElement("button");
     button.textContent = song;
     button.classList.add("song-button");
@@ -157,15 +137,12 @@ function editCardContent(card, album) {
       playlist.push(song);
       updatePlaylist();
     };
-    //li.appendChild(button);
     list.appendChild(button);
   }
 
   const cardImage = card.querySelector("img");
   cardImage.src = album.imageURL;
   cardImage.alt = album.title + " Poster";
-  //card.insertBefore(cardImage, card.querySelector(".card-content"));
-
 
   // You can use console.log to help you debug!
   // View the output by right clicking on your website,
@@ -173,6 +150,8 @@ function editCardContent(card, album) {
   console.log("new card:", album.title, "- html: ", card);
 }
 
+//updates the playlist with the elements of the stack
+//called everytime an edit to the playlist (undo, shuffle, etc.) is made
 function updatePlaylist() {
   const playlistBox = document.querySelector(".playlist-box");
   playlistBox.innerHTML = "<h3 class='playlist-title'>Playlist</h3>";
@@ -192,7 +171,10 @@ function updatePlaylist() {
 // This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCards);
 
-
+//undos last entry into the playlist if not shuffled/sorted
+//or removes the last element if the playlist was shuffled/sorted
+//by popping the playlist stack.
+//adds the popped element into an edits stack.
 function undo(){
   if(playlist.isEmpty()){
     return;
@@ -201,6 +183,8 @@ function undo(){
   updatePlaylist();
 }
 
+//reverses undo to last entry into the playlist
+//by popping the removed element out of the edits stack
 function redo(){
   if(playlistEdit.isEmpty()){
     return;
@@ -209,6 +193,8 @@ function redo(){
   updatePlaylist();
 }
 
+//sorts the playlist by alphabetical order using built-in array sorting
+//moves the elements of the stack to a temporary array and use .sort()
 function sortAlphabetically(){
   const temp = [];
   while(playlist.size() > 0){
@@ -221,6 +207,7 @@ function sortAlphabetically(){
   updatePlaylist();
 }
 
+//shuffles the playlist stack with fisher-yates method in a temporary array
 function shuffle(){
   const temp = [];
   while(playlist.size() > 0){
