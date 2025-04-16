@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", showCards);
 
 
 function undo(){
-  if(undoStack.isEmpty()){
+  if(playlist.isEmpty()){
     return;
   }
   redoStack.push(clonePlaylist(playlist));
@@ -184,7 +184,7 @@ function undo(){
 }
 
 function redo(){
-  if(redoStack.isEmpty()){
+  if(undoStack.isEmpty()){
     return;
   }
   undoStack.push(clonePlaylist(playlist));
