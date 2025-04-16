@@ -44,6 +44,7 @@ const RAM_AUDIO_URL =
   "https://www.youtube.com/playlist?list=PLSbDLF8wQ3oKcstd9ybCSv2lNm_8NTYkI";
 
 //stack class and basic functions of stacks
+//https://medium.com/@mohdtalib.dev/understanding-stacks-in-javascript-a-simple-guide-0e9de7691937
 class Stack{
   constructor(){
     this.items = [];
@@ -123,12 +124,15 @@ function editCardContent(card, album) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
+
+  //hyperlink source https://www.w3schools.com/html/html_links.asp
   cardHeader.innerHTML = `<a href="${album.youtubeLink}" target="_blank">${album.title}</a>`;
 
   const list = card.querySelector("ul");
   list.innerHTML = "";
 
   for(let song of album.songs){
+    //https://www.youtube.com/watch?v=tDqTXipQmBU
     const button = document.createElement("button");
     button.textContent = song;
     button.classList.add("song-button");
@@ -195,6 +199,7 @@ function redo(){
 
 //sorts the playlist by alphabetical order using built-in array sorting
 //moves the elements of the stack to a temporary array and use .sort()
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 function sortAlphabetically(){
   const temp = [];
   while(playlist.size() > 0){
@@ -208,6 +213,7 @@ function sortAlphabetically(){
 }
 
 //shuffles the playlist stack with fisher-yates method in a temporary array
+//https://www.w3schools.com/js/tryit.asp?filename=tryjs_array_sort_random2
 function shuffle(){
   const temp = [];
   while(playlist.size() > 0){
